@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         MoveCap();
+        JumpCap();
         WallSlide();
     }
 
@@ -99,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (!SR.WallSliding) 
+        if (!SR.WallSliding)
         {
             if (SR.Grounded)
             {
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W))
             {
-                if (RB.velocity.y > 0) 
+                if (RB.velocity.y > 0)
                 {
                     RB.velocity = new Vector2(RB.velocity.x, RB.velocity.y * JumpHeightMultiplier);
                 }
@@ -125,6 +126,14 @@ public class PlayerController : MonoBehaviour
             //{
             //    RB.velocity = new Vector2(RB.velocity.x, JumpForce);
             //}
+        }
+    }
+
+    public void JumpCap()
+    {
+        if (SR.WallSliding) 
+        {
+            ExtraJumps = 0;
         }
     }
 
