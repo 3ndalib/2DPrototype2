@@ -27,18 +27,19 @@ public class AnimatorController : MonoBehaviour
         UpdateAnimator();
     }
 
-    public void UpdateAnimator() 
+    public void UpdateAnimator()
     {
         Walking = SR.Walking;
         Grounded = SR.Grounded;
         WallSliding = SR.WallSliding;
 
         YVelocity = PC.RB.velocity.y;
-        
+
         Anim.SetBool("IsWalking", Walking);
         Anim.SetBool("IsGrounded", Grounded);
         Anim.SetBool("IsWallSliding", WallSliding);
 
         Anim.SetFloat("YVelocity", YVelocity);
+
     }
 }

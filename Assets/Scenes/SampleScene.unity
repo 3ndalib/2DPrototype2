@@ -542,6 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RB: {fileID: 0}
   SR: {fileID: 0}
+  AC: {fileID: 0}
   Velocity: {x: 0, y: 0}
   WallJumpDirection: {x: 2, y: 0}
   MovementInputDirection: 0
@@ -552,6 +553,7 @@ MonoBehaviour:
   JumpHeightMultiplier: 0.5
   WallSlideSpeed: 2
   WallJumpForce: 10
+  DashForce: 10
   ExtraJumpsValue: 1
   ExtraJumps: 0
   IsJumping: 0

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D RB;
     public Surroundings SR;
+    public AnimatorController AC;
 
     public Vector2 Velocity;
     public Vector2 WallJumpDirection;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float JumpHeightMultiplier = 0.5f;
     public float WallSlideSpeed;
     public float WallJumpForce;
+    public float DashForce;
 
     public int ExtraJumpsValue;
     public int ExtraJumps;
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
         ExtraJumps = ExtraJumpsValue;
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponent<Surroundings>();
+        AC = GetComponent<AnimatorController>();
     }
 
     // Update is called once per frame
@@ -47,6 +50,10 @@ public class PlayerController : MonoBehaviour
         MovementInputDirection = Input.GetAxisRaw("Horizontal");
         Jump();
         WallJump();
+        if (Input.GetKeyDown(KeyCode.C)) 
+        {
+            Dash();
+        }
     }
 
 
@@ -142,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
     public void WallJump()
     {
-        if (SR.WallSliding && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))) 
+        if (SR.WallSliding && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
             WallJumpDirection = new Vector2(WallJumpDirection.x * -SR.FacingDirection, WallJumpForce);
             RB.AddForce(WallJumpDirection, ForceMode2D.Impulse);
@@ -160,4 +167,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Dash() 
+    {
+        if (SR.Grounded) 
+        {
+            Vector2 ForceToAdd = new Vector2(SR.FacingDirection * DashForce, RB.velocity.y);
+            RB.AddForce(ForceToAdd, ForceMode2D.Impulse);
+            AC.Anim.SetTrigger("Dash");
+        }
+    }
 }
