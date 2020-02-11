@@ -8,14 +8,16 @@ public class PlayerController : MonoBehaviour
     public Surroundings SR;
 
     public Vector2 Velocity;
+    public Vector2 WallJumpDirection;
 
     public float MovementInputDirection;
     public float MaxSpeed;
     public float Acceleration;
     public float Deceleration;
     public float JumpForce;
-    public float WallSlideSpeed;
     public float JumpHeightMultiplier = 0.5f;
+    public float WallSlideSpeed;
+    public float WallJumpForce;
 
     public int ExtraJumpsValue;
     public int ExtraJumps;
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         MovementInputDirection = Input.GetAxisRaw("Horizontal");
         Jump();
+        WallJump();
     }
 
 
@@ -131,9 +134,18 @@ public class PlayerController : MonoBehaviour
 
     public void JumpCap()
     {
-        if (SR.WallSliding) 
+        if (SR.WallSliding)
         {
             ExtraJumps = 0;
+        }
+    }
+
+    public void WallJump()
+    {
+        if (SR.WallSliding && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))) 
+        {
+            WallJumpDirection = new Vector2(WallJumpDirection.x * -SR.FacingDirection, WallJumpForce);
+            RB.AddForce(WallJumpDirection, ForceMode2D.Impulse);
         }
     }
 

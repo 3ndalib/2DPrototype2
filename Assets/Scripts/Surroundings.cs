@@ -121,7 +121,7 @@ public class Surroundings : MonoBehaviour
 
     public bool IsWallSliding()
     {
-        if (TouchingWall && PC.MovementInputDirection == FacingDirection && !Grounded)
+        if (TouchingWall && !Grounded && PC.RB.velocity.y < 0)
         {
             return true;
         }
