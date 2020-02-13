@@ -13,7 +13,8 @@ public class Surroundings : MonoBehaviour
     public bool CanJump;
     public bool CanWallJump;
     public bool TouchingWall;
-    public bool WallSliding;
+    public bool LedgeDetected;
+    public bool WallSliding; 
 
     public float ExtraHeight;
     public float SkinWidth;
@@ -21,8 +22,8 @@ public class Surroundings : MonoBehaviour
 
     public int FacingDirection = 1;
 
-    public Color CollidingColor;
-    public Color NotCollidingColor;
+    public Color DetectingColor;
+    public Color NotDetectingColor;
 
     public LayerMask PlatformLayerMask;
     void Start()
@@ -30,14 +31,14 @@ public class Surroundings : MonoBehaviour
         PC = GetComponent<PlayerController>();
         BC = GetComponent<BoxCollider2D>();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         CheckingSurroundings();
     }
 
-    public void CheckingSurroundings() 
+    public void CheckingSurroundings()
     {
         CheckMovementDirection();
         IsWalking();
@@ -47,20 +48,21 @@ public class Surroundings : MonoBehaviour
         Walking = IsWalking();
         TouchingWall = IsTouchingWall();
         WallSliding = IsWallSliding();
+        LedgeDetected = IsDetectingLedge();
     }
 
-    public void CheckMovementDirection() 
+    public void CheckMovementDirection()
     {
         if (FacingRight && PC.MovementInputDirection < 0)
         {
             Flip();
         }
-        else if (!FacingRight && PC.MovementInputDirection > 0) 
+        else if (!FacingRight && PC.MovementInputDirection > 0)
         {
             Flip();
         }
     }
-    public void Flip() 
+    public void Flip()
     {
         if (!WallSliding)
         {
@@ -76,11 +78,11 @@ public class Surroundings : MonoBehaviour
         Color RayColor;
         if (Hit.collider != null)
         {
-            RayColor = CollidingColor;
+            RayColor = DetectingColor;
         }
         else
         {
-            RayColor = NotCollidingColor;
+            RayColor = NotDetectingColor;
         }
         Debug.DrawRay(new Vector3(BC.bounds.center.x, BC.bounds.min.y) + new Vector3(BC.bounds.extents.x, 0), Vector2.down * (BC.bounds.extents.y / 8 + ExtraHeight), RayColor);
         Debug.DrawRay(new Vector3(BC.bounds.center.x, BC.bounds.min.y) - new Vector3(BC.bounds.extents.x, 0), Vector2.down * (BC.bounds.extents.y / 8 + ExtraHeight), RayColor);
@@ -102,11 +104,11 @@ public class Surroundings : MonoBehaviour
         Color RayColor;
         if (Hit.collider != null)
         {
-            RayColor = CollidingColor;
+            RayColor = DetectingColor;
         }
         else
         {
-            RayColor = NotCollidingColor;
+            RayColor = NotDetectingColor;
         }
         if (FacingRight)
         {
@@ -118,6 +120,46 @@ public class Surroundings : MonoBehaviour
         }
         return Hit.collider != null;
     }
+
+    public bool IsDetectingLedge()    
+    {
+        RaycastHit2D Hit;
+        if (FacingRight)
+        {
+            Hit = Physics2D.Raycast(new Vector2(BC.bounds.center.x, BC.bounds.max.y), Vector2.right, WallCheckDistance, PlatformLayerMask);
+        }
+        else
+        {
+            Hit = Physics2D.Raycast(new Vector2(BC.bounds.center.x, BC.bounds.max.y), Vector2.left, WallCheckDistance, PlatformLayerMask);
+        }
+        Color RayColor;
+        if (Hit.collider == null && IsTouchingWall())
+        {
+            RayColor = DetectingColor;
+        }
+        else
+        {
+            RayColor = NotDetectingColor;
+        }
+        if (FacingRight)
+        {
+            Debug.DrawRay(new Vector2(BC.bounds.center.x, BC.bounds.max.y), Vector2.right * WallCheckDistance, RayColor);
+        }
+        else
+        {
+            Debug.DrawRay(new Vector2(BC.bounds.center.x, BC.bounds.max.y), Vector2.left * WallCheckDistance, RayColor);
+        }
+        if (Hit.collider == null && IsTouchingWall())
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+        
+    }
+
 
     public bool IsWallSliding()
     {
