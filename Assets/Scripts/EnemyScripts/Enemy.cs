@@ -10,7 +10,7 @@ public enum EnemyDifficulty
     Red
 }
 public class Enemy : MonoBehaviour
-{   
+{
     public Slider HealthSlider;
     public Text HealthText;
     public Rigidbody2D RB;
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         BC = GetComponent<BoxCollider2D>();
         RB = GetComponent<Rigidbody2D>();
 
-        CurrentHealth = Health;       
+        CurrentHealth = Health;
         HealthSlider.minValue = 0;
         HealthSlider.maxValue = Health;
     }
@@ -41,6 +41,11 @@ public class Enemy : MonoBehaviour
         HealthSlider.value = CurrentHealth;
 
         HealthText.text = CurrentHealth.ToString() + " / " + Health.ToString();
+    }
+
+    public virtual void FixedUpdate()
+    {
+        
     }
 
 }
