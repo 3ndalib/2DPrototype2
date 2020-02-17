@@ -11,6 +11,7 @@ public class AnimatorController : MonoBehaviour
     public bool Walking;
     public bool Grounded;
     public bool WallSliding;
+    public bool Dashing;
 
     public float YVelocity;
 
@@ -32,12 +33,14 @@ public class AnimatorController : MonoBehaviour
         Walking = SR.Walking;
         Grounded = SR.Grounded;
         WallSliding = SR.WallSliding;
+        Dashing = SR.Dashing;
 
         YVelocity = PC.RB.velocity.y;
 
         Anim.SetBool("IsWalking", Walking);
         Anim.SetBool("IsGrounded", Grounded);
         Anim.SetBool("IsWallSliding", WallSliding);
+        Anim.SetBool("Dashing", Dashing);
 
         Anim.SetFloat("YVelocity", YVelocity);
 

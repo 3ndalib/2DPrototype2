@@ -15,12 +15,15 @@ public class Surroundings : MonoBehaviour
     public bool LedgeDetected;
     public bool WallSliding;
     public bool AbleToWallJump;
+    public bool Dashing;
 
     public float ExtraHeight;
     public float SkinWidth;
     public float WallCheckDistance;
     public float WallJumpCheckDistance;
     public float WallJumpAngle;
+    public float DashTimerValue;
+    public float DashTimer;
 
     public int FacingDirection = 1;
 
@@ -56,6 +59,7 @@ public class Surroundings : MonoBehaviour
         AbleToWallJump = IsAbleToWallJump();
         WallSliding = IsWallSliding();
         LedgeDetected = IsDetectingLedge();
+        Dashing = IsDashing();
     }
 
     public void CheckMovementDirection()
@@ -225,6 +229,18 @@ public class Surroundings : MonoBehaviour
             return true;
         }
         else
+        {
+            return false;
+        }
+    }
+
+    public bool IsDashing() 
+    {
+        if (Input.GetKeyDown(KeyCode.C) && !WallSliding && !TouchingWall)
+        {
+            return true;
+        }
+        else 
         {
             return false;
         }
