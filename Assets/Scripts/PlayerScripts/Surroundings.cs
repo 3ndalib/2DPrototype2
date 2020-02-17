@@ -11,14 +11,16 @@ public class Surroundings : MonoBehaviour
     public bool Grounded;
     public bool Walking;
     public bool CanJump;
-    public bool CanWallJump;
     public bool TouchingWall;
     public bool LedgeDetected;
-    public bool WallSliding; 
+    public bool WallSliding;
+    public bool AbleToWallJump;
 
     public float ExtraHeight;
     public float SkinWidth;
     public float WallCheckDistance;
+    public float WallJumpCheckDistance;
+    public float WallJumpAngle;
 
     public int FacingDirection = 1;
 
@@ -26,6 +28,8 @@ public class Surroundings : MonoBehaviour
     public Color NotDetectingColor;
 
     public LayerMask PlatformLayerMask;
+
+    public Vector2 Direction;
     void Start()
     {
         PC = GetComponent<PlayerController>();
@@ -35,6 +39,7 @@ public class Surroundings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Direction = GetDirectionVector2D(WallJumpAngle) * new Vector2(-FacingDirection, 1);
         CheckingSurroundings();
     }
 
@@ -43,10 +48,12 @@ public class Surroundings : MonoBehaviour
         CheckMovementDirection();
         IsWalking();
         IsTouchingWall();
+        IsAbleToWallJump();
         IsWallSliding();
         Grounded = IsGrounded();
         Walking = IsWalking();
         TouchingWall = IsTouchingWall();
+        AbleToWallJump = IsAbleToWallJump();
         WallSliding = IsWallSliding();
         LedgeDetected = IsDetectingLedge();
     }
@@ -121,6 +128,44 @@ public class Surroundings : MonoBehaviour
         return Hit.collider != null;
     }
 
+    public bool IsAbleToWallJump() 
+    {
+        RaycastHit2D Hit;
+        if (FacingRight)
+        {
+            Hit = Physics2D.Raycast(BC.bounds.center, Direction, WallJumpCheckDistance, PlatformLayerMask);
+        }
+        else
+        {
+            Hit = Physics2D.Raycast(BC.bounds.center, Direction, WallJumpCheckDistance, PlatformLayerMask);
+        }
+        Color RayColor;
+        if (TouchingWall && !Grounded)
+        {
+            RayColor = DetectingColor;
+        }
+        else
+        {
+            RayColor = NotDetectingColor;
+        }
+        if (FacingRight)
+        {
+            Debug.DrawRay(BC.bounds.center, Direction * WallJumpCheckDistance, RayColor);
+        }
+        else
+        {
+            Debug.DrawRay(BC.bounds.center, Direction * WallJumpCheckDistance, RayColor);
+        }
+        if (TouchingWall && !Grounded)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+
     public bool IsDetectingLedge()    
     {
         RaycastHit2D Hit;
@@ -185,4 +230,8 @@ public class Surroundings : MonoBehaviour
         }
     }
 
+    public Vector2 GetDirectionVector2D(float Angle)
+    {
+        return new Vector2(Mathf.Cos(Angle * Mathf.Deg2Rad), Mathf.Sin(Angle * Mathf.Deg2Rad)).normalized;
+    }
 }

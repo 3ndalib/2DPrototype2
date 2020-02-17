@@ -580,7 +580,7 @@ MonoBehaviour:
   SR: {fileID: 0}
   AC: {fileID: 0}
   Velocity: {x: 0, y: 0}
-  WallJumpDirection: {x: 5, y: 0}
+  WallJumpDirection: {x: 10, y: 10}
   MovementInputDirection: 0
   MaxSpeed: 8
   Acceleration: 1
@@ -595,6 +595,7 @@ MonoBehaviour:
   ExtraJumpsValue: 1
   ExtraJumps: 0
   IsJumping: 0
+  AirDashing: 0
 --- !u!114 &255839224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,19 +614,22 @@ MonoBehaviour:
   Grounded: 0
   Walking: 0
   CanJump: 0
-  CanWallJump: 0
   TouchingWall: 0
   LedgeDetected: 0
   WallSliding: 0
+  AbleToWallJump: 0
   ExtraHeight: 0.1
   SkinWidth: 0.1
   WallCheckDistance: 0.5
+  WallJumpCheckDistance: 3
+  WallJumpAngle: 45
   FacingDirection: 1
   DetectingColor: {r: 0, g: 1, b: 0.047268867, a: 1}
   NotDetectingColor: {r: 1, g: 0, b: 0, a: 1}
   PlatformLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  Direction: {x: 0, y: 0}
 --- !u!1 &257573967
 GameObject:
   m_ObjectHideFlags: 0

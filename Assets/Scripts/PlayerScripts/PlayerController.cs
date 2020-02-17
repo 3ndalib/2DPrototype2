@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
     public void JumpCap()
     {
-        if (SR.WallSliding)
+        if (SR.WallSliding || SR.AbleToWallJump)
         {
             ExtraJumps = 0;
         }
@@ -155,10 +155,9 @@ public class PlayerController : MonoBehaviour
 
     public void WallJump()
     {
-        if (!SR.Grounded && SR.TouchingWall && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
+        if (SR.AbleToWallJump && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
-            WallJumpDirection = new Vector2(WallJumpDirection.x * -SR.FacingDirection, WallJumpForce);
-            RB.AddForce(WallJumpDirection, ForceMode2D.Impulse);
+            RB.velocity = new Vector2(SR.Direction.x * WallJumpDirection.x, SR.Direction.y * WallJumpDirection.y);
         }
     }
 
