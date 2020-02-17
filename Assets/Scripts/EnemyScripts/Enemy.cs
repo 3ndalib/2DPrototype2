@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     public Text HealthText;
     public Rigidbody2D RB;
     public BoxCollider2D BC;
+    public Transform Canvas;
+    public Quaternion InitRot;
 
     public EnemyDifficulty Difficulty;
 
@@ -28,6 +30,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void Start()
     {
+        Canvas = transform.Find("Canvas");
+        InitRot = Canvas.transform.rotation;
+
         BC = GetComponent<BoxCollider2D>();
         RB = GetComponent<Rigidbody2D>();
 
@@ -38,8 +43,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        HealthSlider.value = CurrentHealth;
+        Canvas.transform.rotation = InitRot;
 
+        HealthSlider.value = CurrentHealth;
         HealthText.text = CurrentHealth.ToString() + " / " + Health.ToString();
     }
 

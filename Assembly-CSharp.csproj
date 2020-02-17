@@ -81,6 +81,8 @@
     <Compile Include="Assets\Scripts\EnemyScripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\PlatformEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\AnimatorController.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\CombatController.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Surroundings.cs" />
     <Reference Include="Unity.Timeline.Editor">
