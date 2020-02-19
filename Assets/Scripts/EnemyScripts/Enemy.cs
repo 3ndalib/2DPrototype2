@@ -29,24 +29,16 @@ public class Enemy : MonoBehaviour
 
 
     public virtual void Start()
-    {
-        Canvas = transform.Find("Canvas");
-        InitRot = Canvas.transform.rotation;
-
+    {      
         BC = GetComponent<BoxCollider2D>();
         RB = GetComponent<Rigidbody2D>();
 
-        CurrentHealth = Health;
-        HealthSlider.minValue = 0;
-        HealthSlider.maxValue = Health;
+        HealthInit();
     }
 
     public virtual void Update()
     {
-        Canvas.transform.rotation = InitRot;
-
-        HealthSlider.value = CurrentHealth;
-        HealthText.text = CurrentHealth.ToString() + " / " + Health.ToString();
+        HealthHandling();
     }
 
     public virtual void FixedUpdate()
@@ -54,4 +46,41 @@ public class Enemy : MonoBehaviour
         
     }
 
+    public void HealthInit()
+    {
+        Canvas = transform.Find("Canvas");
+        InitRot = Canvas.transform.rotation;
+        CurrentHealth = Health;
+        HealthSlider.minValue = 0;
+        HealthSlider.maxValue = Health;
+    }
+
+    public void HealthHandling()
+    {
+        Canvas.transform.rotation = InitRot;
+        HealthSlider.value = CurrentHealth;
+        HealthText.text = CurrentHealth.ToString() + " / " + Health.ToString();
+    }
+
+    public void Damage(float DamageAmount)
+    {
+        if (CurrentHealth - DamageAmount >= 0)
+        {
+            CurrentHealth -= DamageAmount;
+        }
+        else if (CurrentHealth - DamageAmount < 0)
+        {
+            CurrentHealth = 0;
+            return;
+        }
+        if (CurrentHealth == 0) 
+        {
+            Death();
+        }
+    }
+
+    public void Death() 
+    {
+        Destroy(gameObject);
+    }
 }

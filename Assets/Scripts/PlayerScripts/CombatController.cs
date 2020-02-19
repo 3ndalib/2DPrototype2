@@ -71,7 +71,7 @@ public class CombatController : MonoBehaviour
 
         foreach (Collider2D Enemy in DetectedObjects)
         {
-            Enemy.GetComponent<Enemy>().CurrentHealth -= Attack1Damage;
+            Enemy.GetComponent<Enemy>().Damage(Attack1Damage);
             Debug.Log("You hit " + Enemy.name);
         }
     }

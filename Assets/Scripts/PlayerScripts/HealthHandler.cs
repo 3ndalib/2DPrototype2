@@ -11,20 +11,70 @@ public class HealthHandler : MonoBehaviour
     public float Health;
     public float CurrentHealth;
     public float DamageAmount;
+    public float Timer = 0f;
+    public float HealthTimer = 1f;
+    public float RegenRate = 1f;
 
 
     void Start()
+    {
+        HealthInit();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        HealthHandling();
+    }
+
+    public void HealthInit() 
     {
         CurrentHealth = Health;
         HealthSlider.minValue = 0;
         HealthSlider.maxValue = Health;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HealthHandling() 
     {
         HealthSlider.value = CurrentHealth;
         HealthText.text = CurrentHealth.ToString() + " / " + Health.ToString();
+        if (CurrentHealth < Health)
+        {
+            Timer += Time.deltaTime;
+            if (Timer >= HealthTimer)
+                Regenerate(RegenRate);
+        }
+        else
+        {
+            Timer = 0f;
+        }
     }
 
+    public void Damage(float DamageAmount)
+    {
+        if (CurrentHealth - DamageAmount >= 0)
+        {
+            CurrentHealth -= DamageAmount;
+        }
+        else if (CurrentHealth - DamageAmount < 0)
+        {
+            CurrentHealth = 0;
+            return;
+        }
+    }
+
+    public void Regenerate(float RegenRate)
+    {
+        Timer = 0f;
+        if (CurrentHealth + RegenRate <= Health)
+        {
+            CurrentHealth += RegenRate;
+        }
+        else if (CurrentHealth + RegenRate > Health)
+        {
+            CurrentHealth = Health;
+            return;
+        }
+
+    }
 }
