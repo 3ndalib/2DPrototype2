@@ -9,6 +9,7 @@ public class Surroundings : MonoBehaviour
 
     public bool FacingRight = true;
     public bool Grounded;
+    public bool AbleToMove;
     public bool Walking;
     public bool CanJump;
     public bool TouchingWall;
@@ -49,11 +50,13 @@ public class Surroundings : MonoBehaviour
     public void CheckingSurroundings()
     {
         CheckMovementDirection();
+        IsAbleToMove();
         IsWalking();
         IsTouchingWall();
         IsAbleToWallJump();
         IsWallSliding();
         Grounded = IsGrounded();
+        AbleToMove = IsAbleToMove();
         Walking = IsWalking();
         TouchingWall = IsTouchingWall();
         AbleToWallJump = IsAbleToWallJump();
@@ -99,6 +102,18 @@ public class Surroundings : MonoBehaviour
         Debug.DrawRay(new Vector3(BC.bounds.center.x, BC.bounds.min.y) - new Vector3(BC.bounds.extents.x, 0), Vector2.down * (BC.bounds.extents.y / 8 + ExtraHeight), RayColor);
         Debug.DrawRay(new Vector3(BC.bounds.center.x, BC.bounds.min.y) - new Vector3(BC.bounds.extents.x, BC.bounds.extents.y / 8 + ExtraHeight), Vector2.right * BC.bounds.extents * 2, RayColor);
         return Hit.collider != null;
+    }
+
+    public bool IsAbleToMove() 
+    {
+        if (!WallSliding || (TouchingWall && Grounded)) 
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public bool IsTouchingWall()

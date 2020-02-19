@@ -723,6 +723,7 @@ MonoBehaviour:
   BC: {fileID: 0}
   FacingRight: 1
   Grounded: 0
+  AbleToMove: 0
   Walking: 0
   CanJump: 0
   TouchingWall: 0
@@ -730,9 +731,9 @@ MonoBehaviour:
   WallSliding: 0
   AbleToWallJump: 0
   Dashing: 0
-  ExtraHeight: 0.1
+  ExtraHeight: 0.3
   SkinWidth: 0.1
-  WallCheckDistance: 0.5
+  WallCheckDistance: 1
   WallJumpCheckDistance: 3
   WallJumpAngle: 45
   DashTimerValue: 0.5
