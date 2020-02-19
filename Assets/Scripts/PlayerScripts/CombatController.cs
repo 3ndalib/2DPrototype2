@@ -69,9 +69,10 @@ public class CombatController : MonoBehaviour
     {
         Collider2D[] DetectedObjects = Physics2D.OverlapCircleAll(HitBox.position, HitBoxRadius, WhatIsDamageable);
 
-        foreach (Collider2D Collider in DetectedObjects)
+        foreach (Collider2D Enemy in DetectedObjects)
         {
-            Collider.transform.parent.SendMessage("Damage", Attack1Damage);
+            Enemy.GetComponent<Enemy>().CurrentHealth -= Attack1Damage;
+            Debug.Log("You hit " + Enemy.name);
         }
     }
 
@@ -84,6 +85,10 @@ public class CombatController : MonoBehaviour
 
     public void OnDrawGizmos()
     {
+        if (HitBox.position == null) 
+        {
+            return;
+        }
         Gizmos.DrawWireSphere(HitBox.position, HitBoxRadius);
     }
 }

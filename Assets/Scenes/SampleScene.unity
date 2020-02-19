@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 43397372}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255839216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.32, z: 0}
+  m_LocalPosition: {x: 15.99, y: 14.08, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 1468380180}
@@ -694,7 +694,7 @@ MonoBehaviour:
   SR: {fileID: 0}
   AC: {fileID: 0}
   Velocity: {x: 0, y: 0}
-  WallJumpDirection: {x: 10, y: 10}
+  WallJumpDirection: {x: 10, y: 15}
   MovementInputDirection: 0
   MaxSpeed: 8
   Acceleration: 1
@@ -733,7 +733,7 @@ MonoBehaviour:
   Dashing: 0
   ExtraHeight: 0.3
   SkinWidth: 0.1
-  WallCheckDistance: 1
+  WallCheckDistance: 0.7
   WallJumpCheckDistance: 3
   WallJumpAngle: 45
   DashTimerValue: 0.5
@@ -770,7 +770,7 @@ MonoBehaviour:
   HitBox: {fileID: 1468380180}
   WhatIsDamageable:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!114 &255839226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,7 +1068,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 12.454743, y: 12.807598, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9050,7 +9050,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637742769}
   - component: {fileID: 637742770}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9066,7 +9066,7 @@ RectTransform:
   m_GameObject: {fileID: 637742768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 1}
   m_Children:
   - {fileID: 1396439473}
   - {fileID: 43397372}
@@ -9077,7 +9077,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 35}
+  m_SizeDelta: {x: 80, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637742770
 MonoBehaviour:
@@ -9194,7 +9194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695291200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 15.99, y: 15.76, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1980104902}
@@ -9580,7 +9580,7 @@ GameObject:
   - component: {fileID: 1031027751}
   - component: {fileID: 1031027750}
   - component: {fileID: 1031027749}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9933,7 +9933,7 @@ GameObject:
   - component: {fileID: 1182695070}
   - component: {fileID: 1182695072}
   - component: {fileID: 1182695071}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10245,7 +10245,7 @@ GameObject:
   - component: {fileID: 1396439473}
   - component: {fileID: 1396439475}
   - component: {fileID: 1396439474}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10349,7 +10349,7 @@ GameObject:
   - component: {fileID: 1514070300}
   - component: {fileID: 1514070299}
   - component: {fileID: 1514070298}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10500,7 +10500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1551547097}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10747,7 +10747,7 @@ GameObject:
   - component: {fileID: 1619364364}
   - component: {fileID: 1619364363}
   - component: {fileID: 1619364367}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MM_EXE4_overworld_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10859,7 +10859,7 @@ Transform:
   m_GameObject: {fileID: 1619364362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 22.235617, y: 13.19, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children:
   - {fileID: 1031027748}
   - {fileID: 1551547097}
