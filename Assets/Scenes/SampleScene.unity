@@ -764,7 +764,7 @@ MonoBehaviour:
   LastInputTime: 0
   InputTimer: 0.2
   HitBoxRadius: 0.8
-  Attack1Damage: 10
+  AttackDamage: 10
   SR: {fileID: 0}
   AC: {fileID: 0}
   HitBox: {fileID: 1468380180}
@@ -788,6 +788,9 @@ MonoBehaviour:
   Health: 100
   CurrentHealth: 0
   DamageAmount: 0
+  Timer: 0
+  HealthTimer: 1
+  RegenRate: 1
 --- !u!1 &257573967
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class CombatController : MonoBehaviour
 {
-    public bool CanAttack;
-    public bool GotInput;
-    public bool Attacking;
-    public bool FirstAttack;
 
-    public float LastInputTime = Mathf.NegativeInfinity;
-    public float InputTimer;
     public float HitBoxRadius;
-    public float Attack1Damage;
+    public float AttackDamage;
+    public float TimerValue = 1;
+    public float DelayTimer;
 
     public Surroundings SR;
     public AnimatorController AC;
@@ -24,44 +20,28 @@ public class CombatController : MonoBehaviour
     {
         SR = GetComponent<Surroundings>();
         AC = GetComponent<AnimatorController>();
-        AC.Anim.SetBool("CanAttack", CanAttack);
+        DelayTimer = TimerValue;
     }
 
     public void Update()
     {
         CheckCombatInput();
-        CheckAttacks();
     }
 
     public void CheckCombatInput()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (CanAttack)
-            {
-                GotInput = true;
-                LastInputTime = Time.time;
-            }
-        }
+        OnClick();
     }
 
-    public void CheckAttacks()
+    public void OnClick() 
     {
-        if (GotInput)
+        if (Input.GetMouseButtonDown(0)) 
         {
-            if (!Attacking)
-            {
-                GotInput = false;
-                Attacking = true;
-                FirstAttack = !FirstAttack;
-                AC.Anim.SetBool("Attack1", true);
-                AC.Anim.SetBool("FirstAttack", FirstAttack);
-                AC.Anim.SetBool("Attacking", Attacking);
-            }
+            AC.Anim.SetBool("Punch1", true);
         }
-        if (Time.time >= LastInputTime + InputTimer)
+        else if (Input.GetMouseButtonDown(1))
         {
-            GotInput = false;
+            AC.Anim.SetBool("Kick1", true);
         }
     }
 
@@ -71,16 +51,9 @@ public class CombatController : MonoBehaviour
 
         foreach (Collider2D Enemy in DetectedObjects)
         {
-            Enemy.GetComponent<Enemy>().Damage(Attack1Damage);
+            Enemy.GetComponent<Enemy>().Damage(AttackDamage);
             Debug.Log("You hit " + Enemy.name);
         }
-    }
-
-    public void FinishAttack1()
-    {
-        Attacking = false;
-        AC.Anim.SetBool("Attacking", Attacking);
-        AC.Anim.SetBool("Attack1", false);
     }
 
     public void OnDrawGizmos()
