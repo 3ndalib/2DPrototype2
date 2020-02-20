@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CombatController : MonoBehaviour
 {
-
     public float HitBoxRadius;
     public float AttackDamage;
-    public float TimerValue = 1;
-    public float DelayTimer;
+    public float LastClickedTime = 0;
+    public float MaxComboDelay = 0.9f;
+
+    public int NoOfClicks = 0;
 
     public Surroundings SR;
     public AnimatorController AC;
@@ -20,7 +21,6 @@ public class CombatController : MonoBehaviour
     {
         SR = GetComponent<Surroundings>();
         AC = GetComponent<AnimatorController>();
-        DelayTimer = TimerValue;
     }
 
     public void Update()
@@ -33,16 +33,74 @@ public class CombatController : MonoBehaviour
         OnClick();
     }
 
-    public void OnClick() 
+    public void OnClick()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        if (Time.time - LastClickedTime > MaxComboDelay)
         {
-            AC.Anim.SetBool("Punch1", true);
+            NoOfClicks = 0;
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            LastClickedTime = Time.time;
+            NoOfClicks++;
+            if (NoOfClicks == 1) 
+            {
+                AC.Anim.SetBool("Punch1", true);
+                    
+            }
+            NoOfClicks = Mathf.Clamp(NoOfClicks, 0, 2);
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            AC.Anim.SetBool("Kick1", true);
+            LastClickedTime = Time.time;
+            NoOfClicks++;
+            if (NoOfClicks == 1)
+            {
+                AC.Anim.SetBool("Kick1", true);
+
+            }
+            NoOfClicks = Mathf.Clamp(NoOfClicks, 0, 2);
         }
+    }
+
+    public void Return1Punch() 
+    {
+        if (NoOfClicks >= 2)
+        {
+            AC.Anim.SetBool("Punch2", true);
+        }
+        else 
+        {
+            AC.Anim.SetBool("Punch1", false);
+            NoOfClicks = 0;
+        }
+    }
+
+    public void Return1Kick() 
+    {
+        if (NoOfClicks >= 2)
+        {
+            AC.Anim.SetBool("Kick2", true);
+        }
+        else
+        {
+            AC.Anim.SetBool("Kick1", false);
+            NoOfClicks = 0;
+        }
+    }
+
+    public void Return2Punch() 
+    {
+        AC.Anim.SetBool("Punch1", false);     
+        AC.Anim.SetBool("Punch2", false);
+        NoOfClicks = 0;
+    }
+
+    public void Return2Kick()
+    {
+        AC.Anim.SetBool("Kick1", false);
+        AC.Anim.SetBool("Kick2", false);
+        NoOfClicks = 0;
     }
 
     public void CheckAttackHitbox()
