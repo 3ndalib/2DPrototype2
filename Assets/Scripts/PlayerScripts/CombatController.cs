@@ -5,9 +5,10 @@ using UnityEngine;
 public class CombatController : MonoBehaviour
 {
     public float HitBoxRadius;
+    public float DefaultAttackDamage;
     public float AttackDamage;
     public float LastClickedTime = 0;
-    public float MaxComboDelay = 0.9f;
+    public float MaxComboDelay = 1f;
 
     public int NoOfClicks = 0;
 
@@ -21,6 +22,8 @@ public class CombatController : MonoBehaviour
     {
         SR = GetComponent<Surroundings>();
         AC = GetComponent<AnimatorController>();
+
+        AttackDamage = DefaultAttackDamage;
     }
 
     public void Update()
@@ -31,6 +34,14 @@ public class CombatController : MonoBehaviour
     public void CheckCombatInput()
     {
         OnClick();
+    }
+
+    public void CheckAnimator() 
+    {
+        if (AC.Anim.GetCurrentAnimatorStateInfo(0).IsName("Name of Animation Clip"))
+        { 
+           
+        }
     }
 
     public void OnClick()

@@ -758,7 +758,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitBoxRadius: 0.8
-  AttackDamage: 10
+  DefaultAttackDamage: 10
+  AttackDamage: 0
   LastClickedTime: 0
   MaxComboDelay: 0.9
   NoOfClicks: 0
@@ -10885,6 +10886,8 @@ MonoBehaviour:
   RB: {fileID: 0}
   BC: {fileID: 0}
   Canvas: {fileID: 0}
+  SR: {fileID: 0}
+  Player: {fileID: 0}
   InitRot: {x: 0, y: 0, z: 0, w: 0}
   Difficulty: 0
   DetectingColor: {r: 0, g: 1, b: 0.01848054, a: 1}
@@ -10892,7 +10895,7 @@ MonoBehaviour:
   Health: 100
   CurrentHealth: 0
   AttackDamage: 10
-  MoveSpeed: 50
+  MoveSpeed: 5
   ExtraHeight: 0.2
   GroundDetection: {fileID: 1551547097}
   FacingDirection: 1

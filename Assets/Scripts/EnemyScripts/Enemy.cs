@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D RB;
     public BoxCollider2D BC;
     public Transform Canvas;
+    public Surroundings SR;
+    public GameObject Player;
+
     public Quaternion InitRot;
 
     public EnemyDifficulty Difficulty;
@@ -27,9 +30,11 @@ public class Enemy : MonoBehaviour
     public float CurrentHealth;
     public float AttackDamage;
 
-
     public virtual void Start()
-    {      
+    {
+        Player = GameObject.Find("Player");
+
+        SR = Player.GetComponent<Surroundings>();
         BC = GetComponent<BoxCollider2D>();
         RB = GetComponent<Rigidbody2D>();
 
