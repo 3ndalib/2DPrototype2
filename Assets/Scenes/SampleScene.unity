@@ -694,7 +694,7 @@ MonoBehaviour:
   SR: {fileID: 0}
   AC: {fileID: 0}
   Velocity: {x: 0, y: 0}
-  WallJumpDirection: {x: 10, y: 15}
+  WallJumpDirection: {x: 7, y: 12}
   MovementInputDirection: 0
   MaxSpeed: 8
   Acceleration: 1
@@ -733,8 +733,8 @@ MonoBehaviour:
   Dashing: 0
   ExtraHeight: 0.3
   SkinWidth: 0.1
-  WallCheckDistance: 0.7
-  WallJumpCheckDistance: 3
+  WallCheckDistance: 0.5
+  WallJumpCheckDistance: 1
   WallJumpAngle: 45
   DashTimerValue: 0.5
   DashTimer: 0

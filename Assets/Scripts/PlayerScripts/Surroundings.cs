@@ -150,13 +150,16 @@ public class Surroundings : MonoBehaviour
     public bool IsAbleToWallJump() 
     {
         RaycastHit2D Hit;
+        RaycastHit2D WallHit;
         if (FacingRight)
         {
             Hit = Physics2D.Raycast(BC.bounds.center, Direction, WallJumpCheckDistance, PlatformLayerMask);
+            WallHit = Physics2D.Raycast(BC.bounds.center, Vector2.right, WallJumpCheckDistance, PlatformLayerMask);
         }
         else
         {
             Hit = Physics2D.Raycast(BC.bounds.center, Direction, WallJumpCheckDistance, PlatformLayerMask);
+            WallHit = Physics2D.Raycast(BC.bounds.center, Vector2.left, WallJumpCheckDistance, PlatformLayerMask);
         }
         Color RayColor;
         if (TouchingWall && !Grounded)
@@ -170,12 +173,14 @@ public class Surroundings : MonoBehaviour
         if (FacingRight)
         {
             Debug.DrawRay(BC.bounds.center, Direction * WallJumpCheckDistance, RayColor);
+            Debug.DrawRay(BC.bounds.center, Vector2.right * WallJumpCheckDistance, RayColor);
         }
         else
         {
             Debug.DrawRay(BC.bounds.center, Direction * WallJumpCheckDistance, RayColor);
+            Debug.DrawRay(BC.bounds.center, Vector2.left * WallJumpCheckDistance, RayColor);
         }
-        if (TouchingWall && !Grounded)
+        if (WallHit && !Grounded)
         {
             return true;
         }
