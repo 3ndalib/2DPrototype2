@@ -782,12 +782,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthSlider: {fileID: 884162956}
   HealthText: {fileID: 877602819}
+  PC: {fileID: 0}
+  SR: {fileID: 0}
   Health: 100
   CurrentHealth: 0
-  DamageAmount: 0
   Timer: 0
   HealthTimer: 1
   RegenRate: 1
+  CollisionForce: {x: 10, y: 2}
 --- !u!1 &257573967
 GameObject:
   m_ObjectHideFlags: 0
@@ -10749,7 +10751,7 @@ GameObject:
   - component: {fileID: 1619364367}
   m_Layer: 11
   m_Name: Megaman
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10889,7 +10891,7 @@ MonoBehaviour:
   NotDetectingColor: {r: 1, g: 0, b: 0, a: 1}
   Health: 100
   CurrentHealth: 0
-  DamageAmount: 0
+  AttackDamage: 10
   MoveSpeed: 50
   ExtraHeight: 0.2
   GroundDetection: {fileID: 1551547097}

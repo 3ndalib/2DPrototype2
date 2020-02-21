@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
 
     public float Health;
     public float CurrentHealth;
-    public float DamageAmount;
+    public float AttackDamage;
 
 
     public virtual void Start()

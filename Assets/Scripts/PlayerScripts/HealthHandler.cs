@@ -8,16 +8,22 @@ public class HealthHandler : MonoBehaviour
     public Slider HealthSlider;
     public Text HealthText;
 
+    public PlayerController PC;
+    public Surroundings SR;
+
     public float Health;
     public float CurrentHealth;
-    public float DamageAmount;
     public float Timer = 0f;
     public float HealthTimer = 1f;
     public float RegenRate = 1f;
+    public Vector2 CollisionForce;
 
 
     void Start()
     {
+        PC = GetComponent<PlayerController>();
+        SR = GetComponent<Surroundings>();
+
         HealthInit();
     }
 
@@ -61,6 +67,10 @@ public class HealthHandler : MonoBehaviour
             CurrentHealth = 0;
             return;
         }
+        if (CurrentHealth == 0)
+        {
+            Death();
+        }
     }
 
     public void Regenerate(float RegenRate)
@@ -75,6 +85,21 @@ public class HealthHandler : MonoBehaviour
             CurrentHealth = Health;
             return;
         }
+    }
 
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            CollisionForce = new Vector2(CollisionForce.x * -SR.FacingDirection, CollisionForce.y);
+            PC.RB.AddForce(CollisionForce, ForceMode2D.Impulse);
+            Debug.Log("OnCollisionEnter2D");
+            Damage(collision.gameObject.GetComponent<Enemy>().AttackDamage);
+        }
     }
 }
