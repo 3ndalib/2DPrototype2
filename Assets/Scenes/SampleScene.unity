@@ -757,14 +757,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b87e3d8022b38646a391ec4aac83e99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanAttack: 1
-  GotInput: 0
-  Attacking: 0
-  FirstAttack: 0
-  LastInputTime: 0
-  InputTimer: 0.2
   HitBoxRadius: 0.8
   AttackDamage: 10
+  LastClickedTime: 0
+  MaxComboDelay: 0.9
+  NoOfClicks: 0
   SR: {fileID: 0}
   AC: {fileID: 0}
   HitBox: {fileID: 1468380180}
@@ -10382,7 +10379,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 10
-    m_FontStyle: 0
+    m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 300
@@ -10751,7 +10748,7 @@ GameObject:
   - component: {fileID: 1619364363}
   - component: {fileID: 1619364367}
   m_Layer: 11
-  m_Name: MM_EXE4_overworld_2
+  m_Name: Megaman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
