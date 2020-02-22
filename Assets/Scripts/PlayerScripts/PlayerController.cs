@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     public void JumpCap()
     {
-        if (SR.WallSliding || SR.AbleToWallJump)
+        if (SR.WallSliding)
         {
             ExtraJumps = 0;
         }

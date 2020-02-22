@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\PlayerScripts\HealthHandler.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Surroundings.cs" />
+    <Compile Include="Assets\Scripts\Ropes\Rope.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>F:/2DPrototype 2/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
